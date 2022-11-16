@@ -10,28 +10,17 @@ Simple exemple or template of REST API.
 
 ## Setup API
 
-- Edit `functs_db.php` in `includes` directory :
+- Edit `functs_db.php` in `api/includes` directory :
 if you work on your local host let `true` or change it by `false` if you push your code on a server.
   ```php
   $prod = true;
   ```
-
-- Edit `config.prod.json` in `includes` directory by your online identifiers :
   ```json
-  {
-    "host" : "[YOUR HOST]",
-    "dbusername" : "[YOUR USERNAME]",
-    "dbpassword" : "[YOUR PASSWORD]"
-  }
-  ```
-
-- Edit `config.local.json` in `includes` directory by your local identifiers :
-  ```json
-  {
-    "host" : "[YOUR HOST]",
-    "dbusername" : "[YOUR USERNAME]",
-    "dbpassword" : "[YOUR PASSWORD]"
-  }
+  $config = [
+    "host" => "localhost",
+    "dbusername" => "root",
+    "dbpassword" => ""
+  ];
   ```
 
 - Change in `index.php` by your database name:
@@ -41,7 +30,7 @@ if you work on your local host let `true` or change it by `false` if you push yo
 
 - Change in `script.js` the location of your API :
   ```js
-  let url = "http://localhost/Empty-Exemple-Rest-API/";
+  let url = "http://localhost/Empty-Exemple-Rest-API/api/";
   ```
 
 ## How to use API
@@ -50,17 +39,13 @@ You can use POST or GET request to API.
 
 - GET
   ```
-  http://localhost/Empty-Exemple-Rest-API/?
-  api=view_message_json&
-  message=[MESSAGE]&
+  http://localhost/Empty-Exemple-Rest-API/api/?
   message-id-db=[ID MESSAGE]
   ```
 
-- POST to `http://localhost/Empty-Exemple-Rest-API/`
+- POST to `http://localhost/Empty-Exemple-Rest-API/api/`
   ```json
   {
-    "api": "view_message_json",
-    "message": "[MESSAGE]",
     "message-id-db": "[ID MESSAGE DB]"
   }
   ```
@@ -72,7 +57,6 @@ You can use POST or GET request to API.
   {
     "type": "success",
     "message": "Valid code",
-    "content-db": "[MESSAGE DB]",
     "content": "[MESSAGE]"
   }
   ```
@@ -81,7 +65,7 @@ You can use POST or GET request to API.
   ```json
   {
     "type": "error",
-    "message": "[Error text]"
+    "message": "[Error message]"
   }
   ```
 
