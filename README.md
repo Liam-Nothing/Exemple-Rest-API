@@ -15,7 +15,7 @@ if you work on your local host let `true` or change it by `false` if you push yo
   ```php
   $prod = true;
   ```
-  ```json
+  ```php
   $config = [
     "host" => "localhost",
     "dbusername" => "root",
@@ -28,9 +28,9 @@ if you work on your local host let `true` or change it by `false` if you push yo
   $database = connectDB("ApiRestExemple", $config);
   ```
 
-- Change in `script.js` the location of your API :
+- Change in `js/script_api.js` the location of your API :
   ```js
-  let url = "http://localhost/Empty-Exemple-Rest-API/api/";
+  const url = "http://localhost/Empty-Exemple-Rest-API/api/";
   ```
 
 ## How to use API
@@ -49,6 +49,8 @@ You can use POST or GET request to API.
     "message-id-db": "[ID MESSAGE DB]"
   }
   ```
+
+⚠️ Warning : You need to have "NE-API" = "view_message_json" in your header.
 
 ## What is API response
 
