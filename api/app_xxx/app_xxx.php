@@ -1,7 +1,7 @@
 <?php
 
 $data = array(["message-id-db", 2, 1]);
-$data = data_security($data_from_client, $data);
+$data = data_security($data_from_client_POST, $data);
 
 if (empty($data["type"]) or $data["type"] != "error") {
 

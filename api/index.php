@@ -1,5 +1,13 @@
 <?php
 
+/* Disable for production  */
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+/***************************/
+
 if (isset($_SERVER['HTTP_ORIGIN'])) {
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
     header('Access-Control-Allow-Credentials: true');
@@ -18,18 +26,11 @@ require_once("includes/functs_db.php");
 require_once("includes/functs_utils.php");
 
 header('Content-Type: application/json');
-$data_from_client = (array) json_decode(stripslashes(file_get_contents("php://input")));
+$data_from_client_POST = (array) json_decode(stripslashes(file_get_contents("php://input")));
 $database = connectDB("ApiRestExemple", $config);
 $headers_from_client = apache_request_headers();
+$data_from_client_GET = $_GET;
 
-if (count($data_from_client) > 0) {
-    require_once("includes/selector_api.php");
-} elseif (isset($_GET["api"])) {
-    $data_from_client = $_GET;
-    require_once("includes/selector_api.php");
-} else {
-    $return_data["type"] = "error";
-    $return_data["message"] = "Empty client data";
-}
+require_once("includes/selector_api.php");
 
 echo json_encode($return_data);
